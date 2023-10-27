@@ -7,7 +7,7 @@ use macros_rs::str;
 use std::env;
 
 #[derive(Parser)]
-#[command(version = str!(cli::get_version(false)))]
+#[command(arg_required_else_help = true, version = str!(cli::get_version(false)))]
 struct Cli {
     #[command(subcommand)]
     command: Option<Commands>,
