@@ -3,7 +3,7 @@ mod cli;
 use clap::{Parser, Subcommand};
 use clap_verbosity_flag::Verbosity;
 use exact_panic::setup_panic;
-use macros_rs::{str, string};
+use macros_rs::str;
 use std::env;
 
 #[derive(Parser)]
@@ -28,9 +28,15 @@ enum Commands {
     /// Install all dependencies defined in package.yml
     Install,
     /// Add a new dependency
-    Add,
+    Add {
+        #[command()]
+        name: String,
+    },
     /// Remove a dependency
-    Remove,
+    Remove {
+        #[command()]
+        name: String,
+    },
     /// Remove unused dependencies
     Clean,
 }
@@ -48,4 +54,22 @@ fn main() {
 
     let cli = Cli::parse();
     env_logger::Builder::new().filter_level(cli.verbose.log_level_filter()).init();
+
+    match &cli.command {
+        /* package.yml */
+        Some(Commands::Init) => cli::create_project_yml(),
+
+        /* registry */
+        Some(Commands::Login) => vendor::registry::auth::login(),
+        Some(Commands::Logout) => vendor::registry::auth::logout(),
+        Some(Commands::Publish) => vendor::registry::package::publish(),
+
+        /* package management */
+        Some(Commands::Clean) => vendor::registry::manager::clean(),
+        Some(Commands::Install) => vendor::registry::manager::install(),
+        Some(Commands::Add { name }) => vendor::registry::manager::add(name, true),
+        Some(Commands::Remove { name }) => vendor::registry::manager::remove(name),
+
+        None => {}
+    }
 }

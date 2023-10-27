@@ -529,9 +529,11 @@ dependencies = [
  "chrono",
  "clap",
  "clap-verbosity-flag",
+ "colored",
  "env_logger",
  "exact-panic",
  "macros-rs",
+ "question",
  "vendor",
 ]
 
@@ -1264,6 +1266,12 @@ name = "qndr"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "77f94121139c824ef3864b4ba43be4f3302358aaa65f4cb87dced40d74253e7d"
+
+[[package]]
+name = "question"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "acbb3ede7a8f9a8ab89e714637f2cf40001b58f21340d4242b2f11533e65fa8d"
 
 [[package]]
 name = "quote"
