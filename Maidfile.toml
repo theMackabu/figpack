@@ -1,0 +1,14 @@
+[project]
+name = "figpack"
+version = "0.1.0"
+
+[tasks.build]
+info = "Build binaries"
+depends = ["clean"]
+script = [
+   "cargo zigbuild --release --color always", 
+   "mv target/release/figpack bin/fpm",
+]
+
+[tasks]
+clean = { info = "Clean binary files", script = ["rm -rf bin", "mkdir bin"] }
