@@ -5,13 +5,13 @@ edition = "2021"
 
 [dependencies]
 clap = "4.4.7"
-clap-verbosity-flag = "2.1.0"
+vendor = "0.2.0"
 colored = "2.0.4"
+question = "0.2.2"
+macros-rs = "0.4.0"
 env_logger = "0.10.0"
 exact-panic = "0.0.7"
-macros-rs = "0.4.0"
-question = "0.2.2"
-vendor = "0.2.0"
+clap-verbosity-flag = "2.1.0"
 
 [build-dependencies]
 chrono = "0.4.23"
